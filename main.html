@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Yearbook 2025</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ================= HEADER / NAV ================= -->
+  <header id="main-header">
+    <div class="container header-inner">
+      <a href="main.html" class="logo-wrap" aria-label="홈으로 이동">
+        <span class="logo-mark">YB</span>
+        <div>
+          <p class="eyebrow">Human Computer Interaction · 2025</p>
+          <h1 class="logo">Interactive Yearbook 2025</h1>
+        </div>
+      </a>
+
+      <nav id="main-nav">
+        <ul>
+          <li><a href="#friends-section">친구 목록</a></li>
+          <li><a href="#gallery-section">사진 갤러리</a></li>
+          <li><a href="#activities-section">활동별 추억</a></li>
+          <li><a href="#ai-lab-section">AI Lab</a></li>
+          <li><a href="login.html" id="nav-auth" class="pill-link">로그인</a></li>
+          <li><a href="signup.html" id="nav-signup">회원가입</a></li>
+          <li><a href="mypage.html" id="nav-mypage" class="hidden">마이페이지</a></li>
+          <li id="nav-user" class="nav-user hidden"></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <main id="main-content">
+    <section id="hero-section">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <div class="hero-badge">Yearbook · Web 구현</div>
+          <h2>우리 반의 1년을, 디지털 연감으로 재구성</h2>
+          <p>
+            v0.app 스타일을 그대로 가져온 미니멀&볼드 UI. 친구, 활동, 사진, 그리고 AI 요약을 한 화면에서 찾아보세요.
+          </p>
+
+          <div class="hero-actions">
+            <button id="go-to-friends">친구 찾아보기</button>
+            <button id="go-to-gallery" class="secondary">사진으로 추억 보기</button>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <strong id="uploaded-count">0</strong>
+              <span>업로드된 사진</span>
+            </div>
+            <div class="stat">
+              <strong id="tag-count">0</strong>
+              <span>태그된 활동</span>
+            </div>
+            <div class="stat">
+              <strong id="friend-count">0</strong>
+              <span>올해의 친구</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="polaroid-stack">
+            <div class="polaroid-card tilt-left">
+              <div class="polaroid-photo"></div>
+              <p class="polaroid-caption">봄소풍 🌤️</p>
+            </div>
+            <div class="polaroid-card tilt-right">
+              <div class="polaroid-photo"></div>
+              <p class="polaroid-caption"><em>MT</em> 가는 버스 안</p>
+            </div>
+            <div class="polaroid-card center">
+              <div class="polaroid-photo"></div>
+              <p class="polaroid-caption">첫 학기, 첫 친구들</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HIGHLIGHT CARDS ================= -->
+    <section id="highlight-section">
+      <div class="container section-header">
+        <div>
+          <p class="eyebrow">Highlights</p>
+          <h3>오늘의 하이라이트</h3>
+          <p class="sub">랜덤 선정된 추억, 친구 랭킹, 인기 피드까지 한눈에.</p>
+        </div>
+        <button class="ghost-button" id="go-to-activities">활동 더 보기</button>
+      </div>
+
+      <div class="container highlight-grid">
+        <article class="highlight-card" id="highlight-photo" data-memory-id="">
+          <div class="card-top">
+            <p class="eyebrow">오늘의 사진</p>
+            <span class="pill">랜덤 픽</span>
+          </div>
+          <div class="highlight-thumb-wrap">
+            <img class="highlight-image hidden" alt="썸네일" />
+            <div class="highlight-thumbnail">
+              <span>체육대회에서 찍은 단체샷</span>
+            </div>
+          </div>
+          <p class="highlight-caption">
+            땀범벅이지만 모두가 웃고 있던, 6월의 여름날.
+          </p>
+          <button class="small-button view-detail">상세 보기</button>
+        </article>
+
+        <article class="highlight-card" id="highlight-friend" data-memory-id="">
+          <div class="card-top">
+            <p class="eyebrow">함께 많이 찍힌 친구</p>
+            <span class="pill neutral">Top 1</span>
+          </div>
+          <h4>김혜성</h4>
+          <p>혜성과 함께한 사진이 <strong>7장</strong> 있어요. 두 사람의 추억을 다시 보러 갈까요?</p>
+          <button class="small-button view-detail">상세 보기</button>
+        </article>
+
+        <article class="highlight-card" id="highlight-popular" data-memory-id="">
+          <div class="card-top">
+            <p class="eyebrow">이번 주 인기 추억</p>
+            <span class="pill glow">Hot</span>
+          </div>
+          <p>좋아요와 코멘트가 가장 많이 달린 추억을 모았어요.</p>
+          <button class="small-button view-detail">상세 보기</button>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ================= MEMORY CREATE / UPLOAD ================= -->
+    <section id="upload-section" class="hidden">
+      <div class="container upload-card">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">추억 추가하기</p>
+            <h3>새 사진과 이야기 업로드</h3>
+            <p class="sub">사진 파일을 선택하고 제목/태그를 입력하면 서버로 저장됩니다.</p>
+          </div>
+        </div>
+        <div id="upload-locked" class="hidden" style="margin:10px 0;">
+          <p class="sub">로그인 후 업로드할 수 있습니다. <a href="login.html">로그인/회원가입</a></p>
+        </div>
+        <form id="memory-form" enctype="multipart/form-data" class="hidden">
+          <div class="upload-grid">
+            <label class="upload-box" for="photo-input">
+              <input type="file" id="photo-input" name="photo" accept="image/*" hidden />
+              <div class="upload-placeholder">
+                <p>사진 업로드</p>
+                <span class="sub">클릭해서 파일 선택</span>
+              </div>
+              <img id="photo-preview" class="hidden" alt="미리보기" />
+            </label>
+
+            <div class="upload-fields">
+              <input type="text" name="title" id="mem-title" placeholder="제목 (예: 한강에서 밤산책)" required />
+              <input type="date" name="date" id="mem-date" placeholder="날짜를 선택하세요" required />
+              <input type="text" name="location" id="mem-location" placeholder="장소 (예: 여의도 한강공원)" />
+              <div class="mention-wrap">
+                <div id="friends-chips" class="chip-row"></div>
+                <input type="text" id="mem-friends-input" placeholder="친구 @멘션 (쉼표/Enter로 추가)" autocomplete="off" />
+                <input type="hidden" name="friends" id="mem-friends" />
+                <div id="mention-suggest" class="mention-suggest hidden"></div>
+              </div>
+              <input type="text" name="tags" id="mem-tags" placeholder="태그 (쉼표로 구분, 예: 한강, 힐링)" />
+              <textarea name="body" id="mem-body" rows="3" placeholder="추억 설명을 입력하세요." required></textarea>
+              <button type="button" id="ai-suggest-form">AI로 태그·멘션 추천</button>
+              <p>AI 추천 태그</p>
+              <div id="ai-tag-chips" class="chip-row"></div>
+
+              <div class="upload-actions">
+                <button type="submit" class="small-button">추억 저장하기</button>
+                <button type="button" id="reset-form" class="ghost-button">리셋</button>
+              </div>
+            </div>
+        </div>
+      </form>
+      </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section id="gallery-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Gallery</p>
+            <h3>사진 갤러리</h3>
+            <p class="sub">업로드된 추억을 썸네일로 모아봅니다.</p>
+          </div>
+          <button id="go-gallery-page" class="ghost-button">갤러리 열기</button>
+        </div>
+        <div id="gallery-grid" class="gallery-grid">
+          <!-- JS renders memories here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TIMELINE / ACTIVITIES ================= -->
+    <section id="activities-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Timeline</p>
+            <h3>활동별 타임라인</h3>
+            <p class="sub">업로드된 추억을 시간순으로 정렬했습니다.</p>
+          </div>
+          <button id="go-activities-page" class="ghost-button">활동별 보기</button>
+        </div>
+        <div id="timeline-list" class="timeline-list">
+          <!-- JS renders timeline cards -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEARCH & FILTER ================= -->
+    <section id="search-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Search</p>
+            <h3>빠른 검색</h3>
+            <p class="sub">이름, 활동, 키워드로 바로 찾아보세요.</p>
+          </div>
+          <span class="pill neutral">실시간 필터</span>
+        </div>
+
+        <div class="search-bar">
+          <input
+            type="text"
+            id="global-search-input"
+            placeholder="이름, 활동, 키워드로 검색해보세요"
+          />
+          <button id="global-search-button">검색</button>
+        </div>
+
+        <div class="search-filters">
+          <span>추천 태그:</span>
+          <button class="tag-filter" data-tag="동아리">#동아리</button>
+          <button class="tag-filter" data-tag="수학여행">#수학여행</button>
+          <button class="tag-filter" data-tag="체육대회">#체육대회</button>
+          <button class="tag-filter" data-tag="졸업식">#졸업식</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FRIEND PREVIEW (CAROUSEL 느낌) ================= -->
+    <section id="friends-section">
+      <div class="container friends-wrapper">
+        <div class="friends-header">
+          <div class="friends-title">
+            <p class="eyebrow">우리 반 크루</p>
+            <h3>친구 미리보기</h3>
+            <p class="friends-subtitle">자주 함께한 친구들의 포인트를 한눈에.</p>
+          </div>
+        </div>
+
+        <div class="friends-carousel">
+          <button id="friends-prev" class="carousel-btn ghost-button">←</button>
+          <div class="friends-scroll">
+            <article class="friend-card">
+              <div class="friend-top">
+                <div class="friend-avatar">IMG</div>
+                <div>
+                  <p class="friend-role">VR 동아리 • 3학년</p>
+                  <h4 class="friend-name">김혜성</h4>
+                  <p class="friend-detail">게임 만들기 좋아하는 겜돌이</p>
+                </div>
+              </div>
+              <div class="friend-tags">
+                <span class="tag-chip">#VR동아리</span>
+                <span class="tag-chip">#3학년</span>
+                <span class="tag-chip">#겜돌이</span>
+              </div>
+            </article>
+
+            <article class="friend-card">
+              <div class="friend-top">
+                <div class="friend-avatar">IMG</div>
+                <div>
+                  <p class="friend-role">축구부 • 윙포워드</p>
+                  <h4 class="friend-name">홍길동</h4>
+                  <p class="friend-detail">운동장 러버, 체력 만렙</p>
+                </div>
+              </div>
+              <div class="friend-tags">
+                <span class="tag-chip">#축구부</span>
+                <span class="tag-chip">#운동광</span>
+                <span class="tag-chip">#파워슛</span>
+              </div>
+            </article>
+
+            <article class="friend-card">
+              <div class="friend-top">
+                <div class="friend-avatar">IMG</div>
+                <div>
+                  <p class="friend-role">사진부 • 감성러</p>
+                  <h4 class="friend-name">이지원</h4>
+                  <p class="friend-detail">빛을 찾아 떠나는 포토그래퍼</p>
+                </div>
+              </div>
+              <div class="friend-tags">
+                <span class="tag-chip">#사진러버</span>
+                <span class="tag-chip">#아트</span>
+                <span class="tag-chip">#필름감성</span>
+              </div>
+            </article>
+          </div>
+          <button id="friends-next" class="carousel-btn ghost-button">→</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= AI LAB TEASER ================= -->
+    <section id="ai-lab-section">
+      <div class="container ai-grid">
+        <div>
+          <p class="eyebrow">AI Lab</p>
+          <h3>추억을 분석하는 실험실</h3>
+          <p>
+            AI가 친구의 특징을 요약하고, 함께한 사진을 기반으로 추천 친구를 보여줍니다.<br />
+            과제 요구사항에 맞게 실제 구현 대신 시뮬레이션된 결과를 제공합니다.
+          </p>
+
+          <div class="ai-actions">
+            <button id="ai-summary-button">AI로 내 친구 요약 받기</button>
+          </div>
+        </div>
+
+        <div class="ai-panel">
+          <div class="ai-chip">시뮬레이션 출력</div>
+          <p class="ai-title">AI 요약 샘플</p>
+          <p class="ai-text">
+            “당신은 프로젝트에서 문제 해결을 주도하고, 팀을 웃게 만드는 무드메이커예요. 사진 87장 중 23장에서 눈에 띄게 활약!”
+          </p>
+          <div class="ai-reco">
+            <p class="ai-title">추천 친구</p>
+            <div class="reco-list">
+              <span>김혜성 · 해커톤 3회</span>
+              <span>이지원 · 촬영 협업 5회</span>
+              <span>홍길동 · 체육대회 2회</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RECENT ACTIVITY / FEED ================= -->
+    <section id="activity-log-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Feed</p>
+            <h3>최근 활동</h3>
+            <p class="sub">업로드·댓글 기반 서버 로그.</p>
+          </div>
+          <span class="pill neutral">Live</span>
+        </div>
+        <ul class="activity-log">
+          <li>로드 중...</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer id="main-footer">
+    <div class="container">
+      <p>© 2025 Interactive Yearbook. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <script src="auth.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

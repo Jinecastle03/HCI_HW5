@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yearbook Gallery</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="main-header">
+    <div class="container header-inner">
+      <a href="main.html" class="logo-wrap">
+        <span class="logo-mark">YB</span>
+        <div>
+          <p class="eyebrow">Human Computer Interaction · 2025</p>
+          <h1 class="logo">Interactive Yearbook 2025</h1>
+        </div>
+      </a>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="main.html#friends-section">친구 목록</a></li>
+          <li><a href="gallery.html" class="pill-link">사진 갤러리</a></li>
+          <li><a href="timeline.html">활동별 추억</a></li>
+          <li><a href="main.html#ai-lab-section">AI Lab</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="gallery-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Gallery</p>
+            <h3>사진 갤러리</h3>
+            <p class="sub">업로드된 추억을 썸네일로 모아봅니다.</p>
+          </div>
+          <button class="ghost-button" onclick="window.location.href='main.html#upload-section'">추억 업로드</button>
+        </div>
+        <div id="gallery-grid" class="gallery-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <script src="auth.js"></script>
+  <script src="gallery.js"></script>
+</body>
+</html>

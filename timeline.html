@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yearbook Timeline</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="main-header">
+    <div class="container header-inner">
+      <a href="main.html" class="logo-wrap">
+        <span class="logo-mark">YB</span>
+        <div>
+          <p class="eyebrow">Human Computer Interaction · 2025</p>
+          <h1 class="logo">Interactive Yearbook 2025</h1>
+        </div>
+      </a>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="main.html#friends-section">친구 목록</a></li>
+          <li><a href="gallery.html">사진 갤러리</a></li>
+          <li><a href="timeline.html" class="pill-link">활동별 추억</a></li>
+          <li><a href="main.html#ai-lab-section">AI Lab</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="activities-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Timeline</p>
+            <h3>활동별 타임라인</h3>
+            <p class="sub">시간 순으로 정렬된 추억. 카드를 눌러 상세 페이지로 이동하세요.</p>
+          </div>
+          <button class="ghost-button" onclick="window.location.href='main.html#upload-section'">추억 업로드</button>
+        </div>
+        <div id="timeline-list" class="timeline-list timeline-rail">
+          <!-- JS renders timeline cards -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <script src="auth.js"></script>
+  <script src="timeline.js"></script>
+</body>
+</html>

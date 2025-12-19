@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>회원가입 · Interactive Yearbook</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="main-header">
+    <div class="container header-inner">
+      <a href="main.html" class="logo-wrap" aria-label="홈으로 이동">
+        <span class="logo-mark">YB</span>
+        <div>
+          <p class="eyebrow">Human Computer Interaction · 2025</p>
+          <h1 class="logo">Interactive Yearbook 2025</h1>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="signup-section">
+      <div class="container detail-card">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Account</p>
+            <h3>회원가입</h3>
+            <p class="sub">아이디와 비밀번호를 입력해주세요.</p>
+          </div>
+        </div>
+        <form id="signup-form" class="upload-fields">
+          <input type="text" id="signup-username" placeholder="아이디" required />
+          <input type="password" id="signup-password" placeholder="비밀번호" required />
+          <div class="upload-actions">
+            <button type="submit" class="small-button">회원가입</button>
+            <button type="button" class="ghost-button" onclick="window.location.href='login.html'">로그인으로</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <script src="signup.js"></script>
+</body>
+</html>
