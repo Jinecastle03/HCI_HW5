@@ -7,6 +7,7 @@
   "routes": [
     { "src": "/api/ai/(.*)", "dest": "/api/ai.py" },
     { "src": "/api/(.*)", "dest": "/server.js" },
-    { "src": "/uploads/(.*)", "dest": "/server.js" }
+    { "src": "/uploads/(.*)", "dest": "/server.js" },
+    { "src": "/(.*)", "dest": "/server.js" }
   ]
 }
