@@ -1,13 +1,6 @@
 // main.js - frontend interactions + API integration
 
 const API_BASE = "";
-// AI 서버는 로컬 개발(Flask 5000)과 배포(동일 도메인 /api/ai/*) 모두 대응
-const AI_BASE =
-  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-    ? "http://127.0.0.1:5000"
-    : "";
-const AI_SUGGEST_URL = `${AI_BASE}/api/ai/suggest`;
-const AI_HIGHLIGHT_URL = `${AI_BASE}/api/ai/highlight`;
 let currentFriends = [];
 let currentMemories = [];
 let selectedMemoryId = null;
@@ -54,7 +47,7 @@ async function handleAiSuggestForForm() {
     const friendNames = (currentFriends || []).map(f => f.name);
 
     try {
-        const out = await fetchAi(AI_SUGGEST_URL, {
+        const out = await fetchAi("http://127.0.0.1:5000/ai/suggest", {
             title,
             body,
             friendNames
@@ -420,7 +413,7 @@ async function updateHighlights(memories, friends) {
         if (text) text.textContent = "AI 요약 생성 중...";
 
         try {
-            const out = await fetchAi(AI_HIGHLIGHT_URL, {
+            const out = await fetchAi("http://127.0.0.1:5000/ai/highlight", {
                 title: popular.title,
                 likes: popular.likes || 0,
                 comments: Array.isArray(popular.commentList)
