@@ -7,7 +7,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || "127.0.0.1";
 // Vercel serverless functions can only write to /tmp, so switch upload dir accordingly
-const uploadDir = process.env.VERCEL ? path.join("/tmp", "uploads") : path.join(__dirname, "uploads");
+const ROOT_DIR = process.env.VERCEL ? process.cwd() : __dirname;
+const uploadDir = process.env.VERCEL ? path.join("/tmp", "uploads") : path.join(ROOT_DIR, "uploads");
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
@@ -100,12 +101,22 @@ const users = [
 
 // ===== Middleware =====
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
+// Serve static from repo root (works both locally and in Vercel bundle)
+app.use(express.static(ROOT_DIR));
 app.use("/uploads", express.static(uploadDir));
 
 // Root serve main.html explicitly (and alias /index.html)
 app.get(["/", "/index.html", "/main", "/main.html"], (_req, res) => {
-  res.sendFile(path.join(__dirname, "main.html"));
+  res.sendFile(path.join(ROOT_DIR, "main.html"));
+});
+
+// Serve other html files directly (gallery, login, etc.)
+app.get("/:page.html", (req, res, next) => {
+  const filePath = path.join(ROOT_DIR, `${req.params.page}.html`);
+  fs.access(filePath, fs.constants.F_OK, err => {
+    if (err) return next();
+    res.sendFile(filePath);
+  });
 });
 
 // ===== API endpoints =====
