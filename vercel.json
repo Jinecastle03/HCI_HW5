@@ -7,23 +7,10 @@
   "functions": {
     "server.js": {
       "includeFiles": [
-        "main.html",
-        "gallery.html",
-        "login.html",
-        "signup.html",
-        "memory.html",
-        "timeline.html",
-        "mypage.html",
-        "styles.css",
-        "main.js",
-        "gallery.js",
-        "login.js",
-        "signup.js",
-        "recent.js",
-        "timeline.js",
-        "mypage.js",
-        "detail.js",
-        "auth.js"
+        "*.html",
+        "*.css",
+        "*.js",
+        "uploads/**"
       ]
     }
   },
