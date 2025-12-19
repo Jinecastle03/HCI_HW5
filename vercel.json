@@ -4,6 +4,29 @@
     { "src": "server.js", "use": "@vercel/node" },
     { "src": "api/ai.py", "use": "@vercel/python" }
   ],
+  "functions": {
+    "server.js": {
+      "includeFiles": [
+        "main.html",
+        "gallery.html",
+        "login.html",
+        "signup.html",
+        "memory.html",
+        "timeline.html",
+        "mypage.html",
+        "styles.css",
+        "main.js",
+        "gallery.js",
+        "login.js",
+        "signup.js",
+        "recent.js",
+        "timeline.js",
+        "mypage.js",
+        "detail.js",
+        "auth.js"
+      ]
+    }
+  },
   "routes": [
     { "src": "/api/ai/(.*)", "dest": "/api/ai.py" },
     { "src": "/uploads/(.*)", "dest": "/server.js" },
