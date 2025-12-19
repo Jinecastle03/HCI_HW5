@@ -7,9 +7,9 @@
   "functions": {
     "server.js": {
       "includeFiles": [
-        "*.html",
-        "*.css",
-        "*.js",
+        "**/*.html",
+        "**/*.css",
+        "**/*.js",
         "uploads/**"
       ]
     }
